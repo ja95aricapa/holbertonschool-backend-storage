@@ -3,14 +3,13 @@
 Main file
 """
 import redis
+from exercise import replay
 
 Cache = __import__('exercise').Cache
 
 cache = Cache()
 
-data = b"hello"
-key = cache.store(data)
-print(key)
-
-local_redis = redis.Redis()
-print(local_redis.get(key))
+cache.store("foo")
+cache.store("bar")
+cache.store(42)
+replay(cache.store)
